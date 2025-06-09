@@ -11,10 +11,14 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-app.use(cors({
-  origin: process.env.FRONTEND_URL || '*', // Autorise le frontend déployé
-}));
+const cors = require('cors');
 
+const allowedOrigins = ['https://satisfyme-xa3x.onrender.com']; // ton front Render
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true, // si tu utilises des cookies ou tokens
+}));
 app.use(express.json());
 
 // Routes
